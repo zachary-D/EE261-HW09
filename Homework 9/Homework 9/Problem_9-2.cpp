@@ -27,6 +27,28 @@ namespace zmath
 		return first / second;
 	}
 
+	//Raises value to power
+	int pow(int value, int power)
+	{
+		int ret = 1;
+		for (int i = power; i > 0; i--)
+		{
+			ret = mul(ret, value);
+		}
+		return ret;
+	}
+
+	//Returns the factorial of value
+	int fac(int value)
+	{
+		int ret = 1;
+		for (int i = value; i > 1; i--)
+		{
+			ret = mul(ret, i);
+		}
+		return ret;
+	}
+
 	//Negates value
 	int neg(int value)
 	{
@@ -38,13 +60,10 @@ int main()
 {
 	using namespace zmath;	//Used to clear up a name conflict (see above)
 	std::cout << "Result: " << 
-		neg(								// 0 - ( ( (5-4) * (8/2) ) + 7)
-			add(							//	( ( (5-4) * (8/2) ) + 7
-				mul(						//	(5-4) * (8/2)
-					sub(5, 4),				//	(5-4)
-					zmath::div(8, 2))		//	(8/2)
-				, 7)						//	the + 7 from the end of the comment on line 41
-		) << std::endl;
+		pow(
+			add( fac(5), fac(4))
+			, 3)
+		<< std::endl;
 
 
 	std::cin.get();		//Hold the window
